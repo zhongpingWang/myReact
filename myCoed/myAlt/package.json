@@ -1,0 +1,22 @@
+{
+  "name": "sdfewa3e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "alt": "^0.17.6",
+    "babel-core": "^5.8.29",
+    "babel-loader": "^5.3.2",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.3.0",
+    "jsx-loader": "^0.13.2",
+    "react": "^0.14.0",
+    "webpack": "^1.12.2",
+    "webpack-stream": "^2.1.1"
+  }
+}
