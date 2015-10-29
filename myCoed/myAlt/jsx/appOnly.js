@@ -2,10 +2,15 @@
 // react route  都是页面引入 不会打包到一个文件中  其余的js都会到 js/app.js 中
 
 //Alt
-var TodoActions=require("./TodoActions.js"); 
-var TodoStore=require("./TodoStore.js");  
+// var TodoActions=require("./TodoActions.js"); 
+// var TodoStore=require("./TodoStore.js");  
 
+
+var TodoActions={};
+ var TodoStore={ listen:function(){},unlisten:function(){}};
 //router  http://undefinedblog.com/react-router-0-13-3/
+var React=require("react");
+var ReactRouter=require("react-router");
 var Router = ReactRouter; // 由于是html直接引用的库，所以 ReactRouter 是以全局变量的形式挂在 window 上
 var Route = ReactRouter.Route; 
 var RouteHandler = ReactRouter.RouteHandler;
@@ -13,10 +18,7 @@ var Link = ReactRouter.Link;
 var StateMixin = ReactRouter.State; 
 var DefaultRoute=Router.DefaultRoute;
 var NotFoundRoute=Router.NotFoundRoute;
-
-var List=require("./list.js");
-
- 
+var ActiveHandler=Router.ActiveHandler;  
 
 //router not found
 var NotFound = React.createClass({
@@ -66,23 +68,30 @@ var Index=React.createClass({
     }
 }); 
 
-//http://undefinedblog.com/react-router-0-13-3/
+//react list
+var List=React.createClass({ 
+    render(){
+        return (<h2>List</h2>);
+    }
+}); 
+
+
+
 var routes = (
-  <Route handler={App}>
-    <Route path="/index" handler={Index}/>
-    <Route path="/list" handler={List}/>
-    <DefaultRoute handler={Index}/>
-    <NotFoundRoute handler={NotFound}/>
-  </Route>
+	  <Route handler={App}  path="/">
+	    <Route path="/index" handler={Index}/>
+	    <Route path="/list" handler={List}/>
+	    <DefaultRoute handler={Index}/>
+	    <NotFoundRoute handler={NotFound}/>
+	  </Route>
 );
  
 
 
 // 将匹配的路由渲染到 DOM 中
 Router.run(routes, Router.HashLocation, function(Handler){
-  // withContext http://segmentfault.com/a/1190000002878442
-  React.withContext({"name": "123"}, function () {
+  // withContext http://segmentfault.com/a/1190000002878442 
     React.render(<Handler />,document.getElementById("body"));
-  });
+ 
 }); 
 

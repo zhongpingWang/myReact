@@ -9,11 +9,44 @@ gulp.task('default2', function () {
 });
 
 
+ // entry: {
+ //    app: './js/app.jsx'
+     
+ //  },
+ //  output: {
+ //    path: 'dist',
+ //    filename: '[name].js',
+ //  },
+
 gulp.task('jsx', function() {
   return gulp.src('jsx/app.js').pipe(
     	webpack({
     		output: {
 			    filename: 'app.js'
+			  },
+ 	        module: {
+		      loaders: [
+		      {
+		        test: /\.css$/,
+		        loader: 'style!css'
+		      },
+		       {
+		        test: /\.js$/,
+		        loader: 'babel-loader!jsx-loader',
+		      },
+	        ]
+  }
+
+    }))
+    .pipe(gulp.dest('js/'));
+});
+
+
+gulp.task('jsxOnly', function() {
+  return gulp.src('jsx/appOnly.js').pipe(
+    	webpack({
+    		output: {
+			    filename: 'appOnly.js'
 			  },
  	        module: {
 		      loaders: [
