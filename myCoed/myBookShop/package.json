@@ -1,0 +1,33 @@
+{
+  "name": "zpbookshop2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --progress --colors --watch & nodemon"
+  },
+  "keywords": [
+    "book",
+    "shop"
+  ],
+  "author": "zp",
+  "license": "ISC",
+  "devDependencies": {
+    "alt": "^0.17.9",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "css-loader": "^0.23.0",
+    "history": "^1.13.1",
+    "jsx-loader": "^0.13.2",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.2",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-router": "^1.0.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-stream": "^2.2.0"
+  }
+}
