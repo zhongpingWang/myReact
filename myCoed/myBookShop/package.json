@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --progress --colors --watch & nodemon"
+    "dev": "webpack-dev-server --progress --colors --watch & nodemon",
+    "dev2": "webpack --progress --colors --watch & nodemon"
   },
   "keywords": [
     "book",
@@ -24,6 +25,7 @@
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
     "history": "^1.13.1",
+    "jquery": "^2.1.4",
     "jsx-loader": "^0.13.2",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",

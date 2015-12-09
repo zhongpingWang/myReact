@@ -25,6 +25,12 @@ var NotFound = React.createClass({
 //react
 var App=React.createClass({ 
 
+   getInitialState() {
+        return {
+            count:0
+        }
+    },
+
   //前段只执行一次
 	componentDidMount() {
       TodoStore.listen(this.handleChange); 
@@ -47,24 +53,25 @@ var App=React.createClass({
 
     //渲染
   	render(){ 
-      var image=require("../images/4.jpg");
-  		return (<div >
-            <div>ddddddd</div>
-            <img src={"./js/"+image} />
-           <input type="button" onClick={this.handleClick} value="点击" />  
-          <Nav />
-           {this.props.children}
+
+     // var image=require("../images/4.jpg");
+       //<img src={"./js/"+image} />
+
+       // <input type="button" onClick={this.handleClick} value="点击" /> 
+
+  		return (<div > 
+           
+         
+            <Nav count={this.state.count} />
+            <div id="contentSite"> 
+              
+              {this.props.children}</div>
+           
         </div>);   
   	}
 
 });  
 
-//route index
-var Index=React.createClass({ 
-    render(){
-        return (<h2>index</h2>);
-    }
-}); 
 
  
  

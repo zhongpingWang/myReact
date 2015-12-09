@@ -32,6 +32,12 @@ webpackJsonp([0,1],[
 	//react
 	var App = React.createClass({ displayName: "App",
 
+	    getInitialState: function getInitialState() {
+	        return {
+	            count: 0
+	        };
+	    },
+
 	    //前段只执行一次
 	    componentDidMount: function componentDidMount() {
 	        TodoStore.listen(this.handleChange);
@@ -54,15 +60,13 @@ webpackJsonp([0,1],[
 
 	    //渲染
 	    render: function render() {
-	        var image = __webpack_require__(231);
-	        return React.createElement("div", null, React.createElement("img", { src: "./js/" + image }), React.createElement("input", { type: "button", onClick: this.handleClick, value: "点击" }), React.createElement(Nav, null), this.props.children);
-	    }
-	});
 
-	//route index
-	var Index = React.createClass({ displayName: "Index",
-	    render: function render() {
-	        return React.createElement("h2", null, "index");
+	        // var image=require("../images/4.jpg");
+	        //<img src={"./js/"+image} />
+
+	        // <input type="button" onClick={this.handleClick} value="点击" />
+
+	        return React.createElement("div", null, React.createElement(Nav, { count: this.state.count }), React.createElement("div", { id: "contentSite" }, this.props.children));
 	    }
 	});
 
@@ -26157,14 +26161,58 @@ webpackJsonp([0,1],[
 	    function List(props, context) {
 	        _classCallCheck(this, List);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this, props, context));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this, props, context));
+
+	        _this.state = {
+	            list: []
+	        };
+	        return _this;
 	    }
 
 	    _createClass(List, [{
+	        key: "createNew",
+	        value: function createNew() {
+	            var name = prompt("输入列表名称:");
+	            this.state.list.push(name);
+	            this.setState({ list: this.state.list });
+	        }
+	    }, {
+	        key: "editItem",
+	        value: function editItem(item, i) {
+	            var name = prompt("输入新名称:", item),
+	                list = this.state.list;
+	            list[i] = name;
+	            this.setState({ list: list });
+	        }
+	    }, {
+	        key: "deleteItem",
+	        value: function deleteItem(i, event) {
+
+	            event.stopPropagation();
+
+	            if (confirm("确认删除？")) {
+	                var list = this.state.list;
+	                list.splice(i, 1);
+	                this.setState({ list: list });
+	            };
+	        }
+	    }, {
 	        key: "render",
 	        value: function render() {
+	            var _this2 = this;
 
-	            return React.createElement("div", null, "index");
+	            var list = this.state.list,
+	                items;
+
+	            if (list.length > 0) {
+	                items = list.map(function (item, i) {
+	                    return React.createElement("li", { className: "item", key: i, onClick: _this2.editItem.bind(_this2, item, i) }, React.createElement("span", { onClick: _this2.deleteItem.bind(_this2, i) }, item));
+	                });
+	            } else {
+	                items = React.createElement("li", { className: "null" }, "暂无数据");
+	            }
+
+	            return React.createElement("div", { className: "listBox" }, React.createElement("span", { className: "create", onClick: this.createNew.bind(this) }, "create"), React.createElement("ul", { className: "demo-list" }, items));
 	        }
 	    }]);
 
@@ -26202,7 +26250,7 @@ webpackJsonp([0,1],[
 	        key: "render",
 	        value: function render() {
 
-	            return React.createElement("div", null, "index");
+	            return React.createElement("div", { className: "index" }, React.createElement("pre", null, "这是一个最基本的demo ", React.createElement("br", null), "列表功能：", React.createElement("br", null), "创建：点击创建", React.createElement("br", null), "列表：点击修改", React.createElement("br", null), "列表文字：点击删除", React.createElement("br", null)));
 	        }
 	    }]);
 
@@ -26273,12 +26321,7 @@ webpackJsonp([0,1],[
 /***/ },
 /* 229 */,
 /* 230 */,
-/* 231 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__.p + "images/../4_5f2b66b32f9f186fe449749b32e16c9e.jpg";
-
-/***/ },
+/* 231 */,
 /* 232 */,
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
