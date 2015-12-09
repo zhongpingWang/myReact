@@ -47,7 +47,10 @@ var App=React.createClass({
 
     //渲染
   	render(){ 
+      var image=require("../images/4.jpg");
   		return (<div >
+            <div>ddddddd</div>
+            <img src={"./js/"+image} />
            <input type="button" onClick={this.handleClick} value="点击" />  
           <Nav />
            {this.props.children}
